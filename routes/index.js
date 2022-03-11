@@ -33,7 +33,6 @@ exports.index = function (req, res, next) {
     });
 };
 
-
 exports.admin = function (req, res, next) {
   console.log(req.body);
 
@@ -46,7 +45,14 @@ exports.admin = function (req, res, next) {
         title: 'Admin Access Granted',
         granted: true,
       });
-    } else {
+    }
+    if (username != null && username != ""  ) {
+      return res.render('admin', {
+        title: 'Admin Access Denied',
+        granted: false,
+      });
+    }
+    else {
       return res.render('admin', {
         title: 'Admin Access',
         granted: false,
